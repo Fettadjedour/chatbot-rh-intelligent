@@ -129,7 +129,7 @@ hr { border-color: #e2e8f0 !important; }
 def charger_systeme():
     modele = SentenceTransformer('all-MiniLM-L6-v2')
     client_db = chromadb.Client()
-    collection = client_db.create_collection("rh_docs")
+    collection = client_db.get_or_create_collection("rh_docs")
     documents = [
         "Le poste de Data Scientist requiert minimum 2 ans d'expérience en Python et Machine Learning.",
         "La politique salariale pour un Data Scientist junior est entre 38 000€ et 45 000€ par an.",
