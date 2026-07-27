@@ -125,6 +125,31 @@ strong { color: #1e0a3c !important; }
 .stSuccess { background: #f0fdf4 !important; border-left: 3px solid #22c55e !important; color: #14532d !important; border-radius: 8px !important; }
 
 hr { border-color: #ddd6fe !important; }
+
+/* ── CHAT INPUT FIXÉ EN BAS ── */
+[data-testid="stChatInput"] {
+    background: white !important;
+    border: 2px solid #ddd6fe !important;
+    border-radius: 30px !important;
+    box-shadow: 0 4px 20px rgba(109,40,217,0.12) !important;
+}
+[data-testid="stChatInput"] textarea {
+    background: white !important;
+    color: #1e0a3c !important;
+    font-size: 0.9rem !important;
+    border-radius: 30px !important;
+}
+[data-testid="stChatInput"] textarea::placeholder { color: #a78bfa !important; }
+[data-testid="stChatInputContainer"] {
+    background: linear-gradient(160deg, #faf5ff, #f5f0fe) !important;
+    padding: 0.8rem 1rem !important;
+    border-top: 1px solid #ede9fe !important;
+}
+[data-testid="stChatInputSubmitButton"] button {
+    background: linear-gradient(135deg, #c4a84f, #a88730) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 3px 10px rgba(196,168,79,0.4) !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
