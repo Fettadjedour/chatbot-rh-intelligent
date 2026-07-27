@@ -296,16 +296,10 @@ for msg in st.session_state.messages:
     st.markdown(f'<div class="{css_class}">{icone} {msg["content"]}</div>',
                 unsafe_allow_html=True)
 
-# ── INPUT ─────────────────────────────────────────────────────
-st.markdown("<br>", unsafe_allow_html=True)
-col_i, col_b = st.columns([5, 1])
-with col_i:
-    question = st.text_input("", placeholder="Ex : Analyse ce CV pour un poste de Data Scientist...",
-                              label_visibility="collapsed", key="q")
-with col_b:
-    envoyer = st.button("Envoyer ➤", use_container_width=True)
+# ── INPUT FIXÉ EN BAS ─────────────────────────────────────────
+question = st.chat_input("Posez votre question à Alex...")
 
-if (envoyer or question) and question:
+if question:
     if not cle_api:
         st.warning("⚠️ Entrez votre clé API Mistral dans la sidebar pour commencer.")
     else:
@@ -315,6 +309,7 @@ if (envoyer or question) and question:
         st.markdown(f'<div class="msg-bot">✨ {reponse}</div>', unsafe_allow_html=True)
         st.session_state.messages.append({"role": "user", "content": question})
         st.session_state.messages.append({"role": "assistant", "content": reponse})
+        st.rerun()
 
 # ── FOOTER ───────────────────────────────────────────────────
 st.markdown("""
