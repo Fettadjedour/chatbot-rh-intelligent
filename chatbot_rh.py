@@ -31,16 +31,20 @@ st.markdown("""
     background: linear-gradient(180deg, #1e0a3c 0%, #2d1657 60%, #1e0a3c 100%);
     border-right: 1px solid #4c2a85;
 }
-[data-testid="stSidebar"] * { color: #e9d5ff !important; }
+[data-testid="stSidebar"] * { color: #f0e6ff !important; }
 [data-testid="stSidebar"] h3 { color: #fbbf24 !important; font-size: 0.95rem !important; font-weight: 700 !important; letter-spacing: 0.03em; }
-[data-testid="stSidebar"] label { color: #c4b5fd !important; font-size: 0.75rem !important; font-weight: 600 !important; text-transform: uppercase; letter-spacing: 0.07em; }
-[data-testid="stSidebar"] p, [data-testid="stSidebar"] li { color: #c4b5fd !important; font-size: 0.82rem !important; }
+[data-testid="stSidebar"] label { color: #e2d9f3 !important; font-size: 0.75rem !important; font-weight: 600 !important; text-transform: uppercase; letter-spacing: 0.07em; }
+[data-testid="stSidebar"] p { color: #f0e6ff !important; font-size: 0.85rem !important; font-weight: 500 !important; }
+[data-testid="stSidebar"] li { color: #f0e6ff !important; font-size: 0.85rem !important; }
+[data-testid="stSidebar"] span { color: #f0e6ff !important; }
+[data-testid="stSidebar"] small { color: #d8ccf0 !important; }
 [data-testid="stSidebar"] hr { border-color: #4c2a85 !important; margin: 0.8rem 0 !important; }
 [data-testid="stSidebar"] .stTextInput input {
-    background: #0f051f !important; color: #e9d5ff !important;
-    border: 1px solid #4c2a85 !important; border-radius: 8px !important;
+    background: #0f051f !important; color: #f0e6ff !important;
+    border: 1px solid #6d28d9 !important; border-radius: 8px !important;
     font-size: 0.85rem !important;
 }
+[data-testid="stSidebar"] .stTextInput input::placeholder { color: #9f7aea !important; }
 [data-testid="stSidebar"] .stButton > button {
     background: linear-gradient(135deg, #7c3aed, #5b21b6) !important;
     color: white !important; border: none !important; border-radius: 8px !important;
@@ -55,6 +59,9 @@ st.markdown("""
 [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] {
     background: transparent !important;
 }
+[data-testid="stSidebar"] [data-testid="stFileUploaderDropzoneInstructions"] * { color: #d8ccf0 !important; }
+[data-testid="stSidebar"] .stSuccess { background: rgba(34,197,94,0.15) !important; border-radius: 8px !important; }
+[data-testid="stSidebar"] .stSuccess * { color: #86efac !important; }
 
 /* ── TEXTE PRINCIPAL ── */
 h1, h2, h3, h4 { color: #1e0a3c !important; }
@@ -126,28 +133,48 @@ strong { color: #1e0a3c !important; }
 
 hr { border-color: #ddd6fe !important; }
 
-/* ── CHAT INPUT FIXÉ EN BAS ── */
-[data-testid="stChatInput"] {
-    background: white !important;
-    border: 2px solid #ddd6fe !important;
-    border-radius: 30px !important;
-    box-shadow: 0 4px 20px rgba(109,40,217,0.12) !important;
+/* ── SIDEBAR TEXTE FORCE BLANC ── */
+section[data-testid="stSidebar"] .stMarkdown p,
+section[data-testid="stSidebar"] .stMarkdown span,
+section[data-testid="stSidebar"] .stMarkdown li,
+section[data-testid="stSidebar"] .element-container p,
+section[data-testid="stSidebar"] .element-container span {
+    color: #f0e6ff !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
 }
-[data-testid="stChatInput"] textarea {
-    background: white !important;
-    color: #1e0a3c !important;
-    font-size: 0.9rem !important;
-    border-radius: 30px !important;
-}
-[data-testid="stChatInput"] textarea::placeholder { color: #a78bfa !important; }
-[data-testid="stChatInputContainer"] {
+
+/* ── CHAT INPUT BARRE DU BAS ── */
+[data-testid="stBottom"] {
     background: linear-gradient(160deg, #faf5ff, #f5f0fe) !important;
-    padding: 0.8rem 1rem !important;
     border-top: 1px solid #ede9fe !important;
 }
+[data-testid="stBottom"] > div {
+    background: transparent !important;
+}
+[data-testid="stChatInput"],
+[data-testid="stChatInputTextArea"] {
+    background: white !important;
+    color: #1e0a3c !important;
+    border: 2px solid #ddd6fe !important;
+    border-radius: 30px !important;
+    font-size: 0.9rem !important;
+}
+[data-testid="stChatInput"] textarea,
+[data-testid="stChatInputTextArea"] textarea {
+    background: white !important;
+    color: #1e0a3c !important;
+}
+textarea[data-testid="stChatInputTextArea"] {
+    background: white !important;
+    color: #1e0a3c !important;
+}
+[data-testid="stChatInput"] textarea::placeholder { color: #a78bfa !important; }
+[data-testid="stChatInputSubmitButton"] > button,
 [data-testid="stChatInputSubmitButton"] button {
     background: linear-gradient(135deg, #c4a84f, #a88730) !important;
     border-radius: 50% !important;
+    border: none !important;
     box-shadow: 0 3px 10px rgba(196,168,79,0.4) !important;
 }
 </style>
