@@ -10,6 +10,8 @@ try:
 except ImportError:
     PDF_OK = False
 
+import streamlit.components.v1 as components
+
 st.set_page_config(
     page_title="Alex — Assistant RH",
     page_icon="✨",
@@ -145,36 +147,24 @@ section[data-testid="stSidebar"] .element-container span {
 }
 
 /* ── CHAT INPUT BARRE DU BAS ── */
-[data-testid="stBottom"] {
+.stChatFloatingInputContainer,
+.stChatFloatingInputContainer > div,
+[data-testid="stBottom"],
+[data-testid="stBottom"] > div {
     background: linear-gradient(160deg, #faf5ff, #f5f0fe) !important;
     border-top: 1px solid #ede9fe !important;
 }
-[data-testid="stBottom"] > div {
-    background: transparent !important;
-}
-[data-testid="stChatInput"],
+[data-testid="stChatInput"] textarea,
+textarea[data-testid="stChatInputTextArea"],
 [data-testid="stChatInputTextArea"] {
     background: white !important;
     color: #1e0a3c !important;
     border: 2px solid #ddd6fe !important;
     border-radius: 30px !important;
-    font-size: 0.9rem !important;
 }
-[data-testid="stChatInput"] textarea,
-[data-testid="stChatInputTextArea"] textarea {
-    background: white !important;
-    color: #1e0a3c !important;
-}
-textarea[data-testid="stChatInputTextArea"] {
-    background: white !important;
-    color: #1e0a3c !important;
-}
-[data-testid="stChatInput"] textarea::placeholder { color: #a78bfa !important; }
-[data-testid="stChatInputSubmitButton"] > button,
 [data-testid="stChatInputSubmitButton"] button {
     background: linear-gradient(135deg, #c4a84f, #a88730) !important;
-    border-radius: 50% !important;
-    border: none !important;
+    border-radius: 50% !important; border: none !important;
     box-shadow: 0 3px 10px rgba(196,168,79,0.4) !important;
 }
 </style>
@@ -347,6 +337,25 @@ for msg in st.session_state.messages:
     icone = "🙋" if msg["role"] == "user" else "✨"
     st.markdown(f'<div class="{css_class}">{icone} {msg["content"]}</div>',
                 unsafe_allow_html=True)
+
+# ── FORCER COULEUR BARRE DU BAS (JS) ─────────────────────────
+components.html("""
+<script>
+function fixChatBar() {
+    const doc = window.parent.document;
+    const targets = doc.querySelectorAll(
+        '[data-testid="stBottom"], .stChatFloatingInputContainer'
+    );
+    targets.forEach(el => {
+        el.style.background = 'linear-gradient(160deg, #faf5ff, #f5f0fe)';
+        el.style.borderTop = '1px solid #ede9fe';
+    });
+}
+fixChatBar();
+setTimeout(fixChatBar, 500);
+setTimeout(fixChatBar, 1500);
+</script>
+""", height=0)
 
 # ── INPUT FIXÉ EN BAS ─────────────────────────────────────────
 question = st.chat_input("Posez votre question à Alex...")
